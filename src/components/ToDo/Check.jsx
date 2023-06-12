@@ -1,14 +1,14 @@
 import React from 'react'
 import { BsCheckLg } from 'react-icons/bs'
-import styles from './Todo.css'
+import './Todo.css'
 
 const Check = (isCompleted) => {
   return (
-    <div className='checked'>
+    <button className='checked'>
         {isCompleted && 
         <BsCheckLg />
         }
-    </div>
+    </button>
   )
 }
 

@@ -1,11 +1,12 @@
 import React from 'react'
 import Check from './Check'
+import './Todo.css'
 
-const TodoItem = ({todo}) => {
+const TodoItem = ({post}) => {
   return (
-    <div>
-        <Check /> 
-        {todo.title}
+    <div className='item'>
+          <Check /> 
+          {post.title}
     </div>
   )
 }
