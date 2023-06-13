@@ -21,14 +21,26 @@ function App () {
         }
     ] )
 
-    const addNewPost = () => {
+    const [title, setTitle] = useState('')
 
+    const addNewPost = (e) => {
+        e.preventDefault()
+        const newPost = {
+            title,
+            id: Date.now()
+        }
+        setPost([...posts, newPost])
+        setTitle('')
     }
 
     return (
         <div>
             <form>
-                <MyInput type="text" placeholder="Заголовок"/> 
+                <MyInput
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
+                    type="text"
+                    placeholder="Заголовок"/> 
                 <MyButton onClick={addNewPost}>Новая задача</MyButton>
             </form>
             <PostList posts={posts} title="Список задач"/>
