@@ -4,6 +4,7 @@ import TodoItem from "./components/ToDo/TodoItem";
 import PostList from "./components/ToDo/PostList";
 import MyButton from "./components/UI/button/MyButton";
 import MyInput from "./components/UI/input/MyInput";
+import PostForm from "./components/ToDo/PostForm";
 
 function App () {
     const [posts, setPost] = useState( [ 
@@ -21,31 +22,22 @@ function App () {
         }
     ] )
 
-    const [title, setTitle] = useState('')
+const createPost = (newPost) => {
+    setPost([...posts, newPost])
+} 
+const removePost = (post) => {
+    setPost(posts.filter(p => p.id !== post.id))
+}
 
-    const addNewPost = (e) => {
-        e.preventDefault()
-        const newPost = {
-            title,
-            id: Date.now()
-        }
-        setPost([...posts, newPost])
-        setTitle('')
-    }
 
     return (
         <div>
-            <form>
-                <MyInput
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
-                    type="text"
-                    placeholder="Заголовок"/> 
-                <MyButton onClick={addNewPost}>Новая задача</MyButton>
-            </form>
-            <PostList posts={posts} title="Список задач"/>
+            <PostForm create={createPost}/>
+            {posts.length !== 0
+                ?  <PostList remove={removePost} posts={posts} title="Список задач"/>
+                : <h1 style={{textAlign: 'center'}}>Список пуст</h1>
+            }
         </div>
-        
     )
 }
 
