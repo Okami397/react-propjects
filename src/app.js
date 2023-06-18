@@ -3,47 +3,51 @@ import './styles/index.css';
 import PostList from "./components/ToDo/PostList";
 import PostForm from "./components/ToDo/PostForm";
 import PostFilter from "./components/ToDo/PostFilter";
+import MyModal from "./components/UI/MyModal/MyModal";
+import MyButton from "./components/UI/button/MyButton";
+import { usePosts } from "./components/hooks/usePosts";
 
 function App () {
     const [posts, setPost] = useState( [ 
-        {   title: 'asdasd',
+        {   title: 'Научиться вёрстке',
             isCompleted: false,
             id: '1'
         },
-        {   title: 'iashdkjhask',
+        {   title: 'Выучить js',
             isCompleted: false,
             id: '2'
         },
-        {   title: 'jalskdlkalkjl',
+        {   title: 'Понять React и Redux',
             isCompleted: false,
             id: '3'
         }
     ] )
 
 const [filter, setFilter] = useState({sort: '', query:''})
+const [modal, setModal] = useState(false);
+
 
 const createPost = (newPost) => {
     setPost([...posts, newPost])
+    setModal(false)
 } 
 
 const removePost = (post) => {
     setPost(posts.filter(p => p.id !== post.id))
 }
 
-const sortedPosts = useMemo(() => {
-    if(filter.sort) {
-        return [...posts].sort((a, b) => a[filter.sort].localCompare(b[filter.sort]))
-    }
-    return posts;
-}, [filter.sort, posts])
+const searchPosts = usePosts(posts, filter.sort, filter.query)
 
-const searchPosts = useMemo( ()=> {
-    return sortedPosts.filter(post =>post.title.toLowerCase().includes(filter.query.toLowerCase()))}, 
-    [filter.query, sortedPosts])
+
 
     return (
         <div>
-            <PostForm create={createPost}/>
+            <MyButton style={{marginTop: '30px'}} onClick={() => setModal(true)}>
+                Создать
+            </MyButton>
+            <MyModal visible={modal} setVisible={setModal}>
+                <PostForm create={createPost} />
+            </MyModal>
             <PostFilter
                 filter={filter}
                 setFilter={setFilter}/>

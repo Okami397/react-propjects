@@ -24,3 +24,11 @@
     display: flex;
     align-items: center;
 }
+
+.postWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: self-start;
+    flex-direction: column;
+    gap: 10px;
+}

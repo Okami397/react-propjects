@@ -18,14 +18,14 @@ const PostForm = ({create}) => {
 
     return (
     <div>
-        <form>
-                <MyInput
+        <form className='postWrapper' >
+                <MyInput 
                     value={title}
                     onChange={e => setTitle(e.target.value)}
                     type="text"
-                    placeholder="Заголовок"/> 
+                    placeholder="Описание задачи"/> 
                 <MyButton onClick={addNewPost}>Новая задача</MyButton>
-            </form> 
+        </form> 
     </div>
   )
 }
