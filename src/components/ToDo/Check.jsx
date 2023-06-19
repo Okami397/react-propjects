@@ -6,7 +6,7 @@ const Check = (isCompleted) => {
   return (
     <button className='checked'>
         {isCompleted && 
-        <BsCheckLg />
+        <BsCheckLg style={{margin: '5px'}} />
         }
     </button>
   )
