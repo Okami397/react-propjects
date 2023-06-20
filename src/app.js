@@ -8,7 +8,8 @@ import MyButton from "./components/UI/button/MyButton";
 import { usePosts } from "./components/hooks/usePosts";
 import PostService from "./API/PostService";
 import MyLoader from "./components/UI/loader/MyLoader";
-import getPagesCount from "./utils/getPagesCount"
+import { getPagesCount, getPagesArray} from "./utils/pages"
+import Pagination from "./components/UI/pagination/Pagination";
 
 function App () {
     const [posts, setPost] = useState( [] )
@@ -19,13 +20,8 @@ const [isPostLoading, setIsPostLoading] = useState(false);
 const [totalPages, setTotalPages] = useState(0);
 const [limit, setLimit] = useState(10)
 const [page, setPage] = useState(1)
-let pagesArray = []
 
-for (let i = 0; i < totalPages; i++) {
-    pagesArray.push(i + 1);    
-}
 
-console.log(pagesArray)
 const createPost = (newPost) => {
     setPost([...posts, newPost])
     setModal(false)
@@ -33,7 +29,7 @@ const createPost = (newPost) => {
 
 useEffect( () => {
     fetchPosts()
-}, [])
+}, [page])
 
 const removePost = (post) => {
     setPost(posts.filter(p => p.id !== post.id))
@@ -48,6 +44,10 @@ async function fetchPosts() {
     setIsPostLoading(false)
     const totalCount = responce.headers[`x-total-count`]
     setTotalPages(getPagesCount(totalCount, limit))
+}
+
+const changePage = (page) => {
+    setPage(page)
 }
 
     return (
@@ -68,6 +68,11 @@ async function fetchPosts() {
                         ?   <PostList remove={removePost} posts={searchPosts} title="Список задач"/>
                         :   <h1 style={{textAlign: 'center'}}>Список пуст</h1>
                         }
+                        <Pagination 
+                            page={page} 
+                            changePage={changePage}
+                            totalPages={totalPages}
+                        />
                     </div>}
          </div>
     )
