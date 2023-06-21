@@ -13,7 +13,7 @@ const PostList = ({posts, title, remove}) => {
         timeout={500}
         classNames="post"
         >
-          <TodoItem remove={remove} post={post}/>
+          <TodoItem remove={remove} post={post} />
         </CSSTransition>
          )}
       </TransitionGroup>

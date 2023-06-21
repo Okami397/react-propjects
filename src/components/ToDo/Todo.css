@@ -25,6 +25,12 @@
     align-items: center;
 }
 
+.item__buttons {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+
 .postWrapper {
     display: flex;
     justify-content: center;

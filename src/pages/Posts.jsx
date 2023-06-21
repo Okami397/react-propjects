@@ -40,10 +40,10 @@ const searchPosts = usePosts(posts, filter.sort, filter.query)
 
 async function fetchPosts() {
     setIsPostLoading(true)
-    const responce = await PostService.getAll(limit, page);
-    setPost(responce.data)
+    const response = await PostService.getAll(limit, page);
+    setPost(response.data)
     setIsPostLoading(false)
-    const totalCount = responce.headers[`x-total-count`]
+    const totalCount = response.headers[`x-total-count`]
     setTotalPages(getPagesCount(totalCount, limit))
 }
 
