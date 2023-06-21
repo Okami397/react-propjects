@@ -1,14 +1,13 @@
 import React from "react";
-// import AppRouter from "./components/AppRouter";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from './components/UI/navbar/Navbar'
-import About from './pages/About'
-import Posts from './pages/Posts'
-import Error from './pages/Error'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import About from '../pages/About'
+import Posts from '../pages/Posts'
+import Error from '../pages/Error'
+import Navbar from "../components/AppRouter"
 
-function App () {
 
-    return (
+const AppRouter = () => {
+     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Navbar/>}/>
@@ -17,7 +16,7 @@ function App () {
                 <Route path="*" element={<Error/>}/>
             </Routes>
         </BrowserRouter>
-    )
+     )     
 }
 
-export default App;
+export default AppRouter
