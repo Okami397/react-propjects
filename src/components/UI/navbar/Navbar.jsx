@@ -1,15 +1,18 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom' 
+import React, { useContext} from 'react'
+import { Link, useNavigate } from 'react-router-dom' 
 import classes from './Navbar.module.css'
 import MyButton from '../button/MyButton'
 import { AuthContext } from '../../../context/Context'
 
 const Navbar = () => {
-    const {IsAuth, setIsAuth} = useContext(AuthContext);
+    const {isAuth, setIsAuth} = useContext(AuthContext);
+    const navigate = useNavigate();
+
 
     const logout = () => {
         setIsAuth(false)
         localStorage.removeItem('auth')
+        // navigate("/login");
     }
   return (
         <div className={classes.myNavbar}>

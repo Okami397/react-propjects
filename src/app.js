@@ -7,18 +7,26 @@ import Error from './pages/Error'
 import PostPage from './pages/PostIdPage'
 import { privateRoutes, publicRoutes } from './router/Routes'
 import { AuthContext } from "./context/Context";
+import MyLoader from "./components/UI/loader/MyLoader";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if(localStorage.getItem('auth')) {
         setIsAuth(true)
     }
+    setIsLoading(false);
   }, [])
 
+  console.log(isAuth);
+  if(isLoading) {
+    return <MyLoader/>
+  }
+
   return (
-    <AuthContext.Provider value={{ isAuth, setIsAuth }}>
+    <AuthContext.Provider value={{ isAuth, setIsAuth, isLoading }}>
       <Router>
         {isAuth ? (
           <>
