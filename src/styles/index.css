@@ -68,28 +68,16 @@ h1 {
     font-weight: bold;
 }
 
-.navbar {
-    height: 50px; 
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    background-color: #d4af37;
-}
-
-.navbar__links {
-    margin-left: auto;
-}
-
 .login-page {
     display: flex;
     flex-direction: column;
-    align-items: center;}
+    align-items: center;
+}
 
 .login__form {
     display: flex;
     flex-direction: column;
+    /* align-items: flex-start; */
     gap: 30px;
-    width: 70%;
-
+    width: 400px;
 }

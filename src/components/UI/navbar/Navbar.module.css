@@ -1,0 +1,19 @@
+.myNavbar {
+    height: 50px; 
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background-color: #d4af37;
+}
+
+.myNavbar__links {
+    display: flex;
+    margin-left: auto;
+    gap: 30px;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
